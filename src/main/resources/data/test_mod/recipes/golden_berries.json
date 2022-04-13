@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ggg",
+    "gSg",
+    "ggg"
+  ],
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "test_mod:gradient_berries"
+    }
+  },
+  "result": {
+    "item": "test_mod:golden_berries",
+    "count": 1
+  }
+}

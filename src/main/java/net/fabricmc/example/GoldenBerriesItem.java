@@ -11,9 +11,9 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.World;
 
-public class GradientBerriesItem extends Item {
+public class GoldenBerriesItem extends Item {
 
-    public GradientBerriesItem(Settings settings) {
+    public GoldenBerriesItem(Settings settings) {
         super(settings);
     }
 
@@ -21,13 +21,21 @@ public class GradientBerriesItem extends Item {
         if (!world.isClient) {
             IndexedIterable<RegistryEntry<StatusEffect>> iterable = Registry.STATUS_EFFECT.getIndexedEntries();
             StatusEffectInstance instanceToGive = new StatusEffectInstance(StatusEffects.LUCK);
-            int index = (int)Math.floor(Math.random()*iterable.size());
-            for(RegistryEntry<StatusEffect> i : iterable) {
-                if(index == 0) {
-                    instanceToGive = new StatusEffectInstance(i.value(), (int)Math.floor(Math.random()*1200), (int)Math.floor(Math.pow(Math.random(), 3)*10));
-                    break;
+            while(true) {
+                int index = (int) Math.floor(Math.random() * iterable.size());
+                for (RegistryEntry<StatusEffect> i : iterable) {
+                    if (index == 0) {
+                        instanceToGive = new StatusEffectInstance(i.value(), (int) Math.floor((1 + Math.random()) * 2400), (int) Math.floor(Math.pow(Math.random(), 2) * 10));
+                        break;
+                    }
+                    index--;
                 }
-                index--;
+                StatusEffect eff = instanceToGive.getEffectType();
+                if(eff.isBeneficial() && eff != StatusEffects.SLOW_FALLING && eff != StatusEffects.LUCK) {
+                    if(!user.hasStatusEffect(eff) || !(instanceToGive.getAmplifier() <= user.getStatusEffect(eff).getAmplifier())) {
+                        break;
+                    }
+                }
             }
             if(instanceToGive.getEffectType().isInstant()) {
                 instanceToGive = new StatusEffectInstance(instanceToGive.getEffectType(), 1, (int)Math.floor(Math.random()*2));

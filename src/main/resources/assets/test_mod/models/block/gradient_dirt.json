@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "test_mod:block/example_block"
+    "all": "test_mod:block/gradient_dirt"
   }
 }

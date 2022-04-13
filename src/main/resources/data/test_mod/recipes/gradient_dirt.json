@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#G#",
+    "R#L",
+    "#S#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dirt"
+    },
+    "G": {
+      "item": "minecraft:glow_berries"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "S": {
+      "item": "minecraft:sweet_berries"
+    }
+  },
+  "result": {
+    "item": "test_mod:gradient_dirt",
+    "count": 5
+  }
+}
